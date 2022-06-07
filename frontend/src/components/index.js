@@ -17,6 +17,9 @@ import Comment from './Comment';
 import MainComment from './MainComment';
 import ReplyInput from './ReplyInput';
 import SecondComment from './SecondComment';
+import Replies from './Replies';
+import Reply from './Reply';
+
 export {
   Categories,
   EmptyList,
@@ -36,4 +39,6 @@ export {
   ReplyInput,
   MainComment,
   SecondComment,
+  Replies,
+  Reply,
 };

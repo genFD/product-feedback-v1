@@ -123,6 +123,19 @@ ul {
 .area-a {
   order: 3;
 }
+.reply_container {
+  position: relative;
+}
+.reply_container::before {
+  content: '';
+  background-color: #647196;
+  position: absolute;
+  min-height: 90%;
+  width: 1px;
+  left: 0%;
+  top: 0px;
+  opacity: 30%;
+}
 
 @media (min-width: 768px) {
   .feedback_cont {
@@ -164,10 +177,5 @@ ul {
     grid-template-columns: repeat(3, 1fr);
     row-gap: 16px;
     column-gap: 10px;
-  }
-
-  .reply_container::after {
-    top: 70px;
-    left: 15px;
   }
 }

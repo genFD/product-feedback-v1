@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MainComment, SecondComment } from '../components';
+import { Comment } from '../components';
 import { calculateNumberOfComments } from '../utils/calculate';
 
 const Comments = ({ comments }) => {
@@ -35,27 +35,7 @@ const Comments = ({ comments }) => {
       </div>
       {comments &&
         comments.map((comment, index) => {
-          if (index === 0) {
-            const {
-              user: { name, image, username },
-              content,
-            } = comment;
-            return (
-              <MainComment
-                key={index}
-                name={name}
-                image={image}
-                username={username}
-                content={content}
-              />
-            );
-          }
-          if (index === 1) {
-            return <SecondComment key={index} />;
-          }
-          if (index === 2) {
-            return <div>rest of comments</div>;
-          }
+          return <Comment key={index} comment={comment} />;
         })}
     </div>
   );

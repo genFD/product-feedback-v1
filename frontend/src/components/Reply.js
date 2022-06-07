@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
-import { ReplyInput, Reply } from '../components';
+import { ReplyInput } from '../components';
 
-const Comment = ({ comment }) => {
+const Reply = ({ reply }) => {
   const [replyInput, toggleReplyInput] = useState(false);
 
   const {
     user: { image, name, username },
     content,
-    replies,
-  } = comment;
-
+  } = reply;
   return (
-    <div className="comment mb-6">
+    <div className="comment my-6">
       <header className="w-full flex justify-between mb-4">
         <div className="flex gap-x-4">
           <img src={image.slice(1)} alt="" className="h-10 w-10 rounded-full" />
@@ -30,18 +28,9 @@ const Comment = ({ comment }) => {
         </button>
       </header>
       <p className="text-Ocean-Night tablet:ml-14 text-body-3">{content}</p>
-
       {replyInput && <ReplyInput />}
-      {replies.length > 0 && (
-        <div className="reply_container pl-8">
-          {replies.map((reply, index) => {
-            return <Reply key={index} reply={reply} />;
-          })}
-        </div>
-      )}
-      <div className="h-one bg-Fresh-Lavender w-full my-6"></div>
     </div>
   );
 };
 
-export default Comment;
+export default Reply;

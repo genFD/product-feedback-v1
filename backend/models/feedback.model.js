@@ -1,15 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const feedbackSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      required: [true, "Please enter a title"],
+      required: [true, 'Please enter a title'],
     },
     category: {
       type: String,
       required: true,
-      enum: ["Enhancement", "Feature", "Bug", "UX", "UI"],
+      enum: ['Enhancement', 'Feature', 'Bug', 'UX', 'UI'],
     },
     upvotes: {
       type: Number,
@@ -17,12 +17,12 @@ const feedbackSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Suggestion", "Planned", "In-progress", "Live"],
-      default: "suggestion",
+      enum: ['Suggestion', 'Planned', 'In-progress', 'Live'],
+      default: 'suggestion',
     },
     description: {
       type: String,
-      required: [true, "Please enter a description"],
+      required: [true, 'Please enter a description'],
     },
     comments: [
       {
@@ -48,4 +48,5 @@ const feedbackSchema = mongoose.Schema(
   },
   { timestamps: true }
 );
-module.exports = mongoose.model("Feedback", feedbackSchema);
+
+module.exports = mongoose.model('Feedback', feedbackSchema);

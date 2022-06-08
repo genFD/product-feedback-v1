@@ -136,7 +136,20 @@ ul {
   top: 0px;
   opacity: 30%;
 }
-
+.errorTitle {
+  border: 2px solid #d73737;
+}
+.errorDescription {
+  border: 2px solid #d73737;
+}
+.alert-success {
+  color: #155724;
+  background: #d4edda;
+}
+.alert-error {
+  color: #d73737;
+  background: #f7bdbd;
+}
 @media (min-width: 768px) {
   .feedback_cont {
     display: grid;
@@ -177,5 +190,12 @@ ul {
     grid-template-columns: repeat(3, 1fr);
     row-gap: 16px;
     column-gap: 10px;
+  }
+  .reply_container {
+    /* border: 1px solid red; */
+  }
+  .reply_container::before {
+    top: -31%;
+    left: 3%;
   }
 }

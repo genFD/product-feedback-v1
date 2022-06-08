@@ -33,7 +33,7 @@ const Comment = ({ comment }) => {
 
       {replyInput && <ReplyInput />}
       {replies.length > 0 && (
-        <div className="reply_container pl-8">
+        <div className="reply_container pl-8 tablet:pl-10">
           {replies.map((reply, index) => {
             return <Reply key={index} reply={reply} />;
           })}

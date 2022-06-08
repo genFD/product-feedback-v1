@@ -6,6 +6,7 @@ import {
   EditFeedbackButton,
   GobackButton,
   Comments,
+  CommentsInput,
 } from '../components';
 import axios from 'axios';
 
@@ -40,14 +41,16 @@ function FeedbackDetails() {
   const { comments } = suggestion;
   return (
     <>
-      <header className="my-6 px-6 w-full flex justify-between items-center">
-        <GobackButton />
-        <EditFeedbackButton />
+      <header className="my-6 px-6 w-full flex justify-center tablet:px-10">
+        <div className="w-327 tablet:w-689 desktop:w-825 flex items-center justify-between">
+          <GobackButton />
+          <EditFeedbackButton id={id} />
+        </div>
       </header>
       <main className="flex flex-col items-center">
         <SuggestionDetail {...suggestion} />
         <Comments comments={comments} />
-        <div>comment input</div>
+        <CommentsInput />
       </main>
     </>
   );

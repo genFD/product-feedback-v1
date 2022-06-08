@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { sortMost, sortLeast } from '../utils/sort';
+import { useParams } from 'react-router-dom';
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
@@ -8,8 +9,9 @@ const AppProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [requests, setRequests] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
+  const [suggestion, setSuggestion] = useState(null);
   const [sortedSuggestions, setSortedSuggestions] = useState([]);
-
+  const { id } = useParams();
   const fetchRequests = async () => {
     setLoading(true);
     try {
@@ -27,7 +29,18 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   };
-
+  const getSuggestion = async (id) => {
+    try {
+      const { data } = await axios.get(`/api/feedbacks/${id}`);
+      if (data) {
+        setLoading(false);
+        setSuggestion(data);
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
   const planned = requests.filter((request) => request.status === 'planned');
 
   const inProgress = requests.filter(
@@ -92,7 +105,7 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        sortedSuggestions,
+        getSuggestion,
         isSidebarOpen,
         toggleSidebar,
         fetchRequests,

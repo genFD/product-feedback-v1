@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 const AddFeedbackButton = () => {
   return (
-    <Link to="/feedbacknew">
+    <Link to="/newfeedback">
       <button
         type="button"
         className=" flex items-center justify-center gap-2 bg-Singapore-Orchid rounded-default w-134 h-10 hover:bg-After-Party-Pink transition-all duration-500 text-heading-4 text-Cotton-Ball text-center"

@@ -19,6 +19,9 @@ import ReplyInput from './ReplyInput';
 import SecondComment from './SecondComment';
 import Replies from './Replies';
 import Reply from './Reply';
+import CommentsInput from './CommentsInput';
+import Alert from './Alert';
+import Error from './Error';
 
 export {
   Categories,
@@ -41,4 +44,7 @@ export {
   SecondComment,
   Replies,
   Reply,
+  CommentsInput,
+  Alert,
+  Error,
 };

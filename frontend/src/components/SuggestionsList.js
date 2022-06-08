@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGlobalContext } from '../context/context';
-import { Loading, Suggestion } from '../components';
+import { Loading, Suggestion, EmptyList } from '../components';
 
 const SuggestionsList = () => {
   const { suggestions, loading } = useGlobalContext();
   if (loading) {
     return <Loading />;
+  }
+  if (suggestions.length < 1) {
+    return <EmptyList />;
   }
   return (
     <ul className="">

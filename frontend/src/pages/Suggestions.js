@@ -38,9 +38,6 @@ function Suggestions() {
         <div className="suggestion_list_container px-6 mt-8 flex items-center justify-center ">
           <SuggestionsList />
         </div>
-        <div className="mt-6 tablet:flex tablet:items-center tablet:justify-center">
-          <EmptyList />
-        </div>
       </main>
     </div>
   );

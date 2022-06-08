@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { calculateNumberOfComments } from '../utils/calculate';
 
 const Suggestion = ({ suggestion }) => {
   const { _id, title, category, description, upvotes, comments } = suggestion;
   return (
     <article className="mb-4 desktop:mb-5">
       <Link to={`/feedbackdetail/${_id}`}>
-        <div className="bg-white feedback_cont w-327 h-200 tablet:h-151 tablet:w-689 laptop:w-689 desktop:w-825 rounded-default p-6">
+        <div className="bg-white feedback_cont w-327 h-200 tablet:h-151 tablet:w-689 desktop:w-825 rounded-default p-6">
           <div className="content area-b">
             <header className="mb-2">
               <h2 className="text-body-3 text-Raven-Night font-bold">
@@ -41,7 +42,7 @@ const Suggestion = ({ suggestion }) => {
                 />
               </svg>
               <span className="text-heading-3 text-Raven-Night">
-                {comments.length}
+                {calculateNumberOfComments(comments)}
               </span>
             </div>
           </div>
@@ -72,7 +73,7 @@ const Suggestion = ({ suggestion }) => {
                   />
                 </svg>
                 <span className="text-heading-3 text-Raven-Night">
-                  {comments.length}
+                  {calculateNumberOfComments(comments)}
                 </span>
               </div>
             </div>

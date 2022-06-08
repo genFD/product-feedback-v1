@@ -1,14 +1,22 @@
 export const calculateNumberOfComments = (arr) => {
   let numberOfComments;
+  let arrOfreplies;
   let numberOfreplies;
-  if (arr) {
+  let totalComments;
+  if (arr.length > 0) {
     numberOfComments = arr.length;
-    arr.map((comment) => {
-      if (arr.replies) {
-        numberOfreplies = comment.replies.length;
-      }
-    });
+    numberOfreplies = arr
+      .map((comment) => {
+        if (comment.replies) {
+          arrOfreplies = comment.replies.length;
+          return arrOfreplies;
+        }
+      })
+      .reduce((a, b) => a + b);
+    totalComments = numberOfComments + numberOfreplies;
+  } else {
+    totalComments = 0;
   }
 
-  return numberOfComments + numberOfreplies;
+  return totalComments;
 };

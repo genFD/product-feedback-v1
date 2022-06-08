@@ -22,9 +22,12 @@ import Reply from './Reply';
 import CommentsInput from './CommentsInput';
 import Alert from './Alert';
 import Error from './Error';
+import DeleteModal from './DeleteModal';
+import GoHome from './GoHome';
 
 export {
   Categories,
+  DeleteModal,
   EmptyList,
   OverviewRoadmap,
   SuggestionsList,
@@ -47,4 +50,5 @@ export {
   CommentsInput,
   Alert,
   Error,
+  GoHome,
 };

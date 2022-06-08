@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const ReplyInput = () => {
   return (
@@ -6,7 +6,7 @@ const ReplyInput = () => {
       <textarea
         type="text"
         id="title"
-        className="h-11 tablet:h-20 w-full bg-Ghost-White rounded-md border-none text-Jewel-Cave text-body-3 active: border-The-Rainbow-Fish"
+        className="p-2 h-11 tablet:h-20 w-full bg-Ghost-White rounded-md border-none text-Jewel-Cave text-body-3 active: border-The-Rainbow-Fish"
       />
       <button
         type="button"

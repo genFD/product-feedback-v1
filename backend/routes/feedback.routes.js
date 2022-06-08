@@ -4,7 +4,7 @@ const {
   createFeedback,
   getFeedbacks,
   getFeedback,
-  // createComment,
+  createComment,
   editFeedback,
   deleteFeedback,
 } = require('../controllers/feedback.controller');
@@ -12,5 +12,6 @@ const {
 router.route('/').get(getFeedbacks).post(createFeedback);
 
 router.route('/:id').get(getFeedback).delete(deleteFeedback).put(editFeedback);
+router.route('/:id/addcomment').post(createComment);
 
 module.exports = router;

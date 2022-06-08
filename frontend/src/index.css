@@ -136,12 +136,10 @@ ul {
   top: 0px;
   opacity: 30%;
 }
-.errorTitle {
+.error {
   border: 2px solid #d73737;
 }
-.errorDescription {
-  border: 2px solid #d73737;
-}
+
 .alert-success {
   color: #155724;
   background: #d4edda;

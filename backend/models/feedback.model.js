@@ -17,7 +17,7 @@ const feedbackSchema = mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ['Suggestion', 'Planned', 'In-progress', 'Live'],
+      enum: ['suggestion', 'planned', 'in-progress', 'live'],
       default: 'suggestion',
     },
     description: {

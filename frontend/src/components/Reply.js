@@ -15,7 +15,7 @@ const Reply = ({ reply }) => {
           <img src={image.slice(1)} alt="" className="h-10 w-10 rounded-full" />
           <div className="handle flex flex-col">
             <h3 className="text-Jewel-Cave text-body-3 font-bold">{name}</h3>
-            <span className=" text-Ocean-Night text-body-3">{username}</span>
+            <span className=" text-Ocean-Night text-body-3">@{username}</span>
           </div>
         </div>
         <button

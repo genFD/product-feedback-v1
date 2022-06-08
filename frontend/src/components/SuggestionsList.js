@@ -4,6 +4,7 @@ import { Loading, Suggestion, EmptyList } from '../components';
 
 const SuggestionsList = () => {
   const { suggestions, loading } = useGlobalContext();
+
   if (loading) {
     return <Loading />;
   }

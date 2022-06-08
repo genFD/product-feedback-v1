@@ -1,53 +1,60 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import Modal from 'react-modal';
+import { customStyles } from './EditFeedback';
 import axios from 'axios';
 import { GobackButton, Alert, Error } from '../components';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { useGlobalContext } from '../context/context';
+
+Modal.setAppElement('#root');
 
 function NewFeedback() {
   const [title, updateTitle] = useState('');
-  const [category, updateCategory] = useState('');
+  const [category, updateCategory] = useState('UX');
   const [description, updateDescription] = useState('');
   const [alert, updateAlert] = useState({
     show: false,
     message: '',
     type: '',
   });
-  const [errorTitle, setErrorTitle] = useState(false);
-  const [errorDescription, setErrorDescription] = useState(false);
-  const [dropDown, setDropDown] = useState(false);
-  // const { dropDown, categories } = useGlobalContext();
+  const [errorTitle, updateErrorTitle] = useState(false);
+  const [errorDescription, updateErrorDescription] = useState(false);
+  const { showConfirmationModal, confirmationModal, closeConfirmationMofal } =
+    useGlobalContext();
+
+  const { fetchRequests } = useGlobalContext();
+
   const handleAlert = (show = false, type = '', message = '') => {
     updateAlert({ show, type, message });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title) {
-      setErrorTitle(true);
-      handleAlert(true, 'error', 'There was an error!');
+      updateErrorTitle(true);
+      handleAlert(true, 'error', 'There was an error‼️');
     }
     if (!description) {
-      setErrorDescription(true);
+      updateErrorDescription(true);
       handleAlert(true, 'error', 'There was an error!');
     }
-    if (title) {
-      setErrorTitle(false);
-    }
-    if (description) {
-      setErrorDescription(false);
-    }
+
     if (title && description) {
-      handleAlert(true, 'success', 'Thank you for your feedback!');
+      updateErrorTitle(false);
+      updateErrorDescription(false);
+
+      const data = {
+        title,
+        description,
+        category,
+      };
+      await axios.post('/api/feedbacks', data);
+      fetchRequests();
+
+      handleAlert(true, 'success', 'Thanks for your feedback!');
       updateTitle('');
       updateDescription('');
-      updateCategory('');
     }
-
-    // const data = {
-    //   title,
-    //   description,
-    //   category,
-    // };
-    // await axios.post('/api/feedbacks', data);
-    //show alert
   };
 
   return (
@@ -58,6 +65,7 @@ function NewFeedback() {
         </header>
       </div>
       <form
+        onSubmit={handleSubmit}
         className="bg-white w-full rounded-default pt-11 pb-6 px-6 relative tablet:pt-12 tablet:pb-10 tablet:px-11"
         action=""
       >
@@ -66,6 +74,7 @@ function NewFeedback() {
             <Alert {...alert} handleAlert={handleAlert} />
           </div>
         )}
+
         <div className="absolute w-10 h-10 -top-5 flex items-center justify-center rounded-full add_feed_cont_icon tablet:w-14 tablet:h-14 tablet:-top-7">
           <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -116,9 +125,9 @@ function NewFeedback() {
               value={title}
               onChange={(e) => updateTitle(e.target.value)}
               className={`h-12 p-2 bg-Ghost-White rounded-md text-Jewel-Cave text-body-3 active: border-The-Rainbow-Fish 
-                ${errorTitle && 'errorTitle'}`}
+                ${errorTitle && !title && 'error'}`}
             />
-            {errorTitle && <Error />}
+            {errorTitle && <Error title={title} errorTitle={errorTitle} />}
           </section>
 
           {/* --------- Category ----------- */}
@@ -140,7 +149,7 @@ function NewFeedback() {
                 }}
                 className="h-12 p-2 w-full bg-Ghost-White rounded-md border-none text-Jewel-Cave text-body-3 active: border-The-Rainbow-Fish border "
               >
-                {['All', 'UX', 'UI', 'Enhancement', 'Bug', 'Feature'].map(
+                {['UX', 'UI', 'Enhancement', 'Bug', 'Feature'].map(
                   (item, index) => {
                     return (
                       <option
@@ -183,31 +192,37 @@ function NewFeedback() {
               type="text"
               id="title"
               className={`h-30 p-2 bg-Ghost-White rounded-md text-Jewel-Cave text-body-3 active: border-The-Rainbow-Fish tablet:h-24
-              ${errorDescription && 'errorDescription'}
+              ${errorDescription && !description && 'error'}
               `}
               value={description}
               onChange={(e) => updateDescription(e.target.value)}
             />
-            {errorDescription && <Error />}
+            {errorDescription && (
+              <Error
+                description={description}
+                errorDescription={errorDescription}
+              />
+            )}
           </section>
         </div>
 
         <div className="flex flex-col gap-y-4 justify-center items-center w-full tablet:flex-row tablet:gap-y-0 tablet:justify-end tablet:gap-x-4">
           {/* --------- add feedback button ----------- */}
           <button
-            type="button"
-            onClick={handleSubmit}
+            type="submit"
             className=" bg-Singapore-Orchid rounded-default w-full h-11 hover:bg-After-Party-Pink transition-all duration-500 text-heading-4 text-Cotton-Ball text-center tablet:w-36 tablet:order-2"
           >
             Add Feedback
           </button>
           {/* --------- cancel feedback button ----------- */}
-          <button
-            type="button"
-            className="  bg-Raven-Night rounded-default w-full h-11  hover:bg-Kimberlite transition-all duration-500 text-heading-4 text-Cotton-Ball text-center tablet:w-24 tablet:order-1"
-          >
-            Cancel
-          </button>
+          <Link to="/">
+            <button
+              type="button"
+              className="  bg-Raven-Night rounded-default w-full h-11  hover:bg-Kimberlite transition-all duration-500 text-heading-4 text-Cotton-Ball text-center tablet:w-24 tablet:order-1"
+            >
+              Cancel
+            </button>
+          </Link>
         </div>
       </form>
     </div>

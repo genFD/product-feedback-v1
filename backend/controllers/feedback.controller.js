@@ -50,6 +50,7 @@ const editFeedback = handleAsync(async (req, res) => {
 
 const deleteFeedback = handleAsync(async (req, res) => {
   const feedback = await Feedback.findById(req.params.id);
+
   if (!feedback) {
     res.status(StatusCodes.NOT_FOUND);
     throw new Error('feedback not found');
@@ -59,9 +60,20 @@ const deleteFeedback = handleAsync(async (req, res) => {
   }
 });
 
-// const createComment = handleAsync(async (req, res) => {
-
-// });
+const createComment = handleAsync(async (req, res) => {
+  // res.json({ message: 'add comment' });
+  const { comment } = req.body;
+  const feedback = await Feedback.findById(req.params.id);
+  if (feedback) {
+    xw;
+    feedback.comments.push(comment);
+    const updatedFeedback = await feedback.save();
+    res.json(updatedFeedback);
+  } else {
+    res.status(StatusCodes.NOT_FOUND);
+    throw new Error('feedback not found');
+  }
+});
 
 module.exports = {
   getFeedbacks,
@@ -69,5 +81,5 @@ module.exports = {
   createFeedback,
   editFeedback,
   deleteFeedback,
-  // createComment,
+  createComment,
 };

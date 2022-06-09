@@ -3,18 +3,14 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import { useParams, useNavigate } from 'react-router-dom';
 
-import {
-  Alert,
-  DeleteModal,
-  Error,
-  GobackButton,
-  GoHome,
-  Loading,
-} from '../components';
+import { Alert, Error, GobackButton, GoHome, Loading } from '../components';
 
 import { useGlobalContext } from '../context/context';
 
 export const customStyles = {
+  overlay: {
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+  },
   content: {
     minWidth: '300px',
     maxWidth: '600px',
@@ -32,14 +28,16 @@ Modal.setAppElement('#root');
 
 function EditFeedback() {
   const [loading, setLoading] = useState(false);
-  // const [modal, setModal] = useState(false);
+
   const {
     confirmationModal,
     modal,
     closeModal,
     showConfirmationModal,
     showModal,
+    closeConfirmationModal,
   } = useGlobalContext();
+
   const [formdata, updateFormData] = useState({
     title: '',
     category: '',
@@ -130,7 +128,7 @@ function EditFeedback() {
   const { title, category, status, description } = formdata;
 
   return (
-    <div className="flex flex-col gap-y-9 justify-center items-center pt-10 pb-16 px-6 tablet:pt-14 tablet:pb-56 tablet:px-28 laptop:pt-20 laptop:px-72 laptop:pb-24 desktop:pt-24 desktop:pb-44 desktop:px-450">
+    <div className="flex flex-col gap-y-9 justify-center items-center pt-10 pb-16 px-6 tablet:pt-14 tablet:pb-56 tablet:px-28 laptop:pt-20 laptop:px-72 laptop:pb-24 desktop:pt-24 desktop:pb-44 desktop:px-450  bg-ove">
       {
         <Modal
           isOpen={modal}
@@ -164,7 +162,7 @@ function EditFeedback() {
       {
         <Modal
           isOpen={confirmationModal}
-          onRequestClose={closeModal}
+          onRequestClose={closeConfirmationModal}
           style={customStyles}
           className="w-1/3 p-4 flex flex-col justify-center items-center rounded-default shadow-md"
           contentLabel="Delete feedback"
@@ -172,7 +170,7 @@ function EditFeedback() {
           <p className="text-body-2 font-bold text-Raven-Night">
             ✅ feedback deleted ✅
           </p>
-          <GoHome />
+          <GoHome closeConfirmationModal={closeConfirmationModal} />
         </Modal>
       }
       <div className="flex justify-start w-full pl-6">

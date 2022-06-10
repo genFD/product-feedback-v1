@@ -24,6 +24,14 @@ import Alert from './Alert';
 import Error from './Error';
 import DeleteModal from './DeleteModal';
 import GoHome from './GoHome';
+import GobackAndRoadmap from './GobackAndRoadmap';
+import AddFeedbackButton from './AddFeedbackButton';
+import RoadmapHeader from './RoadmapHeader';
+import Planned from './Planned';
+import Inprogress from './Inprogress';
+import Live from './Live';
+import MobileHeader from './MobileHeader';
+import Card from './Card';
 
 export {
   Categories,
@@ -51,4 +59,12 @@ export {
   Alert,
   Error,
   GoHome,
+  GobackAndRoadmap,
+  AddFeedbackButton,
+  RoadmapHeader,
+  Planned,
+  Inprogress,
+  Live,
+  MobileHeader,
+  Card,
 };

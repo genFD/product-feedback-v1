@@ -66,6 +66,7 @@ const AppProvider = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
+        requests,
         isSidebarOpen,
         toggleSidebar,
         fetchRequests,

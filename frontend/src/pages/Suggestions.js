@@ -1,6 +1,5 @@
 import {
   Categories,
-  EmptyList,
   OverviewRoadmap,
   SuggestionsList,
   Logo,

@@ -2,42 +2,13 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Modal from 'react-modal';
 import { useParams, useNavigate } from 'react-router-dom';
-
 import { Alert, Error, GobackButton, GoHome, Loading } from '../components';
-
 import { useGlobalContext } from '../context/context';
+import { customStyles } from '../utils/ModalStyles';
 
-export const customStyles = {
-  overlay: {
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-  },
-  content: {
-    minWidth: '300px',
-    maxWidth: '600px',
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    position: 'relative',
-    backgroundColor: 'rgb(227, 224, 247)',
-  },
-};
 Modal.setAppElement('#root');
 
 function EditFeedback() {
-  const [loading, setLoading] = useState(false);
-
-  const {
-    confirmationModal,
-    modal,
-    closeModal,
-    showConfirmationModal,
-    showModal,
-    closeConfirmationModal,
-  } = useGlobalContext();
-
   const [formdata, updateFormData] = useState({
     title: '',
     category: '',
@@ -53,6 +24,17 @@ function EditFeedback() {
   const [errorDescription, updateErrorDescription] = useState(false);
   const [suggestion, setSuggestion] = useState(null);
   const { fetchRequests } = useGlobalContext();
+
+  const {
+    confirmationModal,
+    modal,
+    closeModal,
+    showConfirmationModal,
+    showModal,
+    closeConfirmationModal,
+    loading,
+    setLoading,
+  } = useGlobalContext();
 
   const { id } = useParams();
   const navigate = useNavigate();
@@ -182,7 +164,7 @@ function EditFeedback() {
         onSubmit={handleSubmit}
         className=" bg-white w-full rounded-default  pt-11 pb-6 px-6 relative tablet:pt-12 tablet:pb-10 tablet:px-11"
       >
-        <div className="absolute w-10 h-10 -top-5 flex items-center justify-center rounded-full add_feed_cont_icon tablet:w-14 tablet:h-14 tablet:-top-7">
+        <div className="absolute -top-5 flex items-center justify-center rounded-full add_feed_cont_icon tablet:w-14 tablet:h-14 tablet:-top-7">
           <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient

@@ -1,12 +1,8 @@
-import { useState, useEffect } from 'react';
-import Modal from 'react-modal';
-import { customStyles } from './EditFeedback';
+import { useState } from 'react';
 import axios from 'axios';
 import { GobackButton, Alert, Error } from '../components';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useGlobalContext } from '../context/context';
-
-Modal.setAppElement('#root');
 
 function NewFeedback() {
   const [title, updateTitle] = useState('');
@@ -19,8 +15,6 @@ function NewFeedback() {
   });
   const [errorTitle, updateErrorTitle] = useState(false);
   const [errorDescription, updateErrorDescription] = useState(false);
-  const { showConfirmationModal, confirmationModal, closeConfirmationMofal } =
-    useGlobalContext();
 
   const { fetchRequests } = useGlobalContext();
 
@@ -75,7 +69,7 @@ function NewFeedback() {
           </div>
         )}
 
-        <div className="absolute w-10 h-10 -top-5 flex items-center justify-center rounded-full add_feed_cont_icon tablet:w-14 tablet:h-14 tablet:-top-7">
+        <div className="absolute -top-5 flex items-center justify-center rounded-full add_feed_cont_icon tablet:w-14 tablet:h-14 tablet:-top-7">
           <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg">
             <defs>
               <radialGradient
@@ -215,7 +209,7 @@ function NewFeedback() {
             Add Feedback
           </button>
           {/* --------- cancel feedback button ----------- */}
-          <Link to="/">
+          <Link className="w-full" to="/">
             <button
               type="button"
               className="  bg-Raven-Night rounded-default w-full h-11  hover:bg-Kimberlite transition-all duration-500 text-heading-4 text-Cotton-Ball text-center tablet:w-24 tablet:order-1"

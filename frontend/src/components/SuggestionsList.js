@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGlobalContext } from '../context/context';
 import { Loading, Suggestion, EmptyList } from '../components';
 
 const SuggestionsList = () => {
-  const { suggestions, loading } = useGlobalContext();
+  const { suggestions, loading, fetchRequests } = useGlobalContext();
+  useEffect(() => {
+    fetchRequests();
+  }, []);
 
   if (loading) {
     return <Loading />;

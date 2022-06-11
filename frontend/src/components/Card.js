@@ -6,7 +6,7 @@ const Card = ({ request }) => {
       <div
         className={`w-full border-The-Rainbow-Fish h-233 tablet:pb-6 tablet:h-251 pt-6 bg-white rounded-default after:content-[''] after:absolute after:w-full after:h-6 after:top-0 after:rounded-t-default ${
           request.status === 'planned'
-            ? 'after:bg-Steamed-Salmon'
+            ? 'after:bg-Peach'
             : request.status === 'in-progress'
             ? 'after:bg-Singapore-Orchid'
             : request.status === 'live'
@@ -29,7 +29,7 @@ const Card = ({ request }) => {
             className={`
           ${
             request.status === 'planned'
-              ? 'bg-Steamed-Salmon'
+              ? 'bg-Peach'
               : request.status === 'in-progress'
               ? 'bg-Singapore-Orchid'
               : request.status === 'live'

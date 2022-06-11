@@ -95,7 +95,6 @@ function EditFeedback() {
   const deleteFeedback = async () => {
     try {
       await axios.delete(`/api/feedbacks/${id}`);
-      fetchRequests();
     } catch (error) {
       console.log(error);
     }
@@ -126,6 +125,7 @@ function EditFeedback() {
             <button
               onClick={() => {
                 deleteFeedback();
+                closeModal();
                 showConfirmationModal();
               }}
               className="bg-Singapore-Orchid rounded-default p-2 shadow-md text-body-3 hover:bg-After-Party-Pink transition-colors duration-500 text-heading-4 text-Cotton-Ball"
@@ -152,7 +152,10 @@ function EditFeedback() {
           <p className="text-body-2 font-bold text-Raven-Night">
             ✅ feedback deleted ✅
           </p>
-          <GoHome closeConfirmationModal={closeConfirmationModal} />
+          <GoHome
+            closeModal={closeModal}
+            closeConfirmationModal={closeConfirmationModal}
+          />
         </Modal>
       }
       <div className="flex justify-start w-full pl-6">

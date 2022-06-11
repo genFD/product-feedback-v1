@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useGlobalContext } from '../context/context';
 import {
   RoadmapHeader,
   Planned,
@@ -10,23 +9,23 @@ import {
 
 function Roadmap() {
   const [planned, setPlanned] = useState(true);
-  const [inProgress, setInprogress] = useState(true);
-  const [live, setlive] = useState(true);
-  const [value, setValue] = useState(0);
-  const { requests } = useGlobalContext();
-  const [list, setList] = useState(requests);
+  const [inProgress, setInprogress] = useState(
+    window.innerWidth <= 767 ? false : true
+  );
+  const [live, setlive] = useState(window.innerWidth <= 767 ? false : true);
 
   const repopulateRequests = () => {
-    if (window.innerWidth >= 768) {
-      setPlanned(true);
-      setInprogress(true);
-      setlive(true);
-    } else {
+    if (window.innerWidth <= 767) {
       setPlanned(true);
       setInprogress(false);
       setlive(false);
+    } else {
+      setPlanned(true);
+      setInprogress(true);
+      setlive(true);
     }
   };
+
   const showComponent = (comp) => {
     if (comp === 'planned') {
       setPlanned(true);
@@ -44,6 +43,7 @@ function Roadmap() {
       setPlanned(false);
     }
   };
+
   useEffect(() => {
     window.addEventListener('resize', repopulateRequests);
     return () => {

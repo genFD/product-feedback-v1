@@ -3,7 +3,19 @@ const Feedback = require('../models/feedback.model');
 const { StatusCodes } = require('http-status-codes');
 
 const getFeedbacks = handleAsync(async (req, res) => {
-  const feedbacks = await Feedback.find({});
+  const { sort } = req.query;
+  const queryObject = {};
+
+  let results = Feedback.find(queryObject);
+  if (sort === 'Least Upvotes') {
+    results.sort('upvotes');
+  }
+  if (sort === 'Most Upvotes') {
+    results.sort('-upvotes');
+  }
+
+  const feedbacks = await results;
+
   res.status(StatusCodes.OK).json(feedbacks);
 });
 
@@ -50,7 +62,6 @@ const editFeedback = handleAsync(async (req, res) => {
 
 const deleteFeedback = handleAsync(async (req, res) => {
   const feedback = await Feedback.findById(req.params.id);
-
   if (!feedback) {
     res.status(StatusCodes.NOT_FOUND);
     throw new Error('feedback not found');

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const GobackHome = ({ closeConfirmationModal }) => {
+const GobackHome = ({ closeConfirmationModal, closeModal }) => {
   const navigate = useNavigate();
 
   return (

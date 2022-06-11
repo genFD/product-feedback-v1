@@ -141,7 +141,7 @@ function NewFeedback() {
                 onChange={(e) => {
                   updateCategory(e.target.value);
                 }}
-                className="h-12 p-2 w-full bg-Ghost-White rounded-md border-none text-Jewel-Cave text-body-3 active: border-The-Rainbow-Fish border "
+                className="h-12 p-4 w-full bg-Ghost-White rounded-md border-none text-Jewel-Cave text-body-3 active: border-The-Rainbow-Fish border cursor-pointer "
               >
                 {['UX', 'UI', 'Enhancement', 'Bug', 'Feature'].map(
                   (item, index) => {
